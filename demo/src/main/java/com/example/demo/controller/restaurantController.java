@@ -14,7 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.bean.userProfileBean;
+import com.example.demo.bean.alert;
+import com.example.demo.bean.bill;
+import com.example.demo.bean.coupon;
+import com.example.demo.bean.customerReview;
+import com.example.demo.bean.inventory;
 import com.example.demo.bean.menu;
+import com.example.demo.bean.orders;
 import com.example.demo.bean.restaurant;
 import com.example.demo.services.noraaAlphaService;
 import com.example.demo.services.restaurantService;
@@ -92,5 +98,200 @@ public class restaurantController {
 		map.put("Status", "Success");
 		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/createOrder",method=RequestMethod.POST)
+	public ResponseEntity<?> createOrder(@RequestBody orders orders)
+	{
+		String Message=restaurantService.createOrder(orders);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("Message", Message);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/updateOrder",method=RequestMethod.POST)
+	public ResponseEntity<?> updateOrder(@RequestBody orders orders)
+	{
+		String Message=restaurantService.updateOrder(orders);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("Message", Message);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/readOrder",method=RequestMethod.POST)
+	public ResponseEntity<?> readOrder(@RequestBody orders orders)
+	{
+		List<orders> orderList = new ArrayList<orders>();
+		orderList=restaurantService.readOrder(orders);
+		Map map=new HashMap<>();
+		map.put("Message", orderList);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/updateUserProfile",method=RequestMethod.POST)
+	public ResponseEntity<?> updateUserProfile(@RequestBody restaurant restaurant)
+	{
+		String status=restaurantService.updateUserProfile(restaurant);
+		Map map=new HashMap<>();
+		map.put("Message", status);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/createCustomerReview",method=RequestMethod.POST)
+	public ResponseEntity<?> createCustomerReview(@RequestBody customerReview customerReview)
+	{
+		String Message=restaurantService.createCustomerReview(customerReview);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("Message", Message);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/updateCustomerReview",method=RequestMethod.POST)
+	public ResponseEntity<?> updateCustomerReview(@RequestBody customerReview customerReview)
+	{
+		String Message=restaurantService.updateCustomerReview(customerReview);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("Message", Message);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/readCustomerReview",method=RequestMethod.POST)
+	public ResponseEntity<?> readCustomerReview(@RequestBody customerReview customerReview)
+	{
+		List<customerReview> customerReviewList = new ArrayList<customerReview>();
+		customerReviewList=restaurantService.readCustomerReview(customerReview);
+		Map map=new HashMap<>();
+		map.put("Message", customerReviewList);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
 
+	@RequestMapping(value="/createInventory",method=RequestMethod.POST)
+	public ResponseEntity<?> createInventory(@RequestBody inventory inventory)
+	{
+		String Message=restaurantService.createInventory(inventory);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("Message", Message);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/updateInventory",method=RequestMethod.POST)
+	public ResponseEntity<?> updateCustomerReview(@RequestBody inventory inventory)
+	{
+		String Message=restaurantService.updateInventory(inventory);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("Message", Message);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/readInventory",method=RequestMethod.POST)
+	public ResponseEntity<?> readInventory(@RequestBody inventory inventory)
+	{
+		List<inventory> inventoryList = new ArrayList<inventory>();
+		inventoryList=restaurantService.readInventory(inventory);
+		Map map=new HashMap<>();
+		map.put("Message", inventoryList);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/createBill",method=RequestMethod.POST)
+	public ResponseEntity<?> createBill(@RequestBody bill  bill)
+	{
+		String Message=restaurantService.createBill(bill);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("Message", Message);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/updateBill",method=RequestMethod.POST)
+	public ResponseEntity<?> updateBill(@RequestBody bill bill)
+	{
+		String Message=restaurantService.updateBill(bill);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("Message", Message);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/readBill",method=RequestMethod.POST)
+	public ResponseEntity<?> readBill(@RequestBody bill bill)
+	{
+		List<bill> billList = new ArrayList<bill>();
+		billList=restaurantService.readBill(bill);
+		Map map=new HashMap<>();
+		map.put("Message", billList);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/createCoupon",method=RequestMethod.POST)
+	public ResponseEntity<?> createCoupon(@RequestBody coupon  coupon)
+	{
+		String Message=restaurantService.createCoupon(coupon);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("Message", Message);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/updateCoupon",method=RequestMethod.POST)
+	public ResponseEntity<?> updateCoupon(@RequestBody coupon coupon)
+	{
+		String Message=restaurantService.updateCoupon(coupon);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("Message", Message);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/readCoupon",method=RequestMethod.POST)
+	public ResponseEntity<?> readCoupon(@RequestBody coupon coupon)
+	{
+		List<coupon> couponList = new ArrayList<coupon>();
+		couponList=restaurantService.readCoupon(coupon);
+		Map map=new HashMap<>();
+		map.put("Message", couponList);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/createAlert",method=RequestMethod.POST)
+	public ResponseEntity<?> createAlert(@RequestBody alert  alert)
+	{
+		String Message=restaurantService.createAlert(alert);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("Message", Message);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/updateAlert",method=RequestMethod.POST)
+	public ResponseEntity<?> updateAlert(@RequestBody alert alert)
+	{
+		String Message=restaurantService.updateAlert(alert);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("Message", Message);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/readAlert",method=RequestMethod.POST)
+	public ResponseEntity<?> readAlert(@RequestBody alert alert)
+	{
+		List<alert> alertList = new ArrayList<alert>();
+		alertList=restaurantService.readAlert(alert);
+		Map map=new HashMap<>();
+		map.put("Message", alertList);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
 }

@@ -31,7 +31,7 @@ public class t_alert {
     @Column(name = "delFlag")
     String delFlag;
 
-    @Column(name = "companyID")
+    @Column(name = "companyId")
     String companyID;
 
 	public int getId() {

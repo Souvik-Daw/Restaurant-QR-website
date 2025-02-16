@@ -25,7 +25,7 @@ public class m_inventory {
     @Column(name = "itemCode")
     String itemCode;
 
-    @Column(name = "companyID")
+    @Column(name = "companyId")
     String companyID;
 
     @Column(name = "delFlag")

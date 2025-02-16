@@ -21,6 +21,7 @@ CREATE TABLE m_menu (
     id INT PRIMARY key NOT NULL,
     item_name VARCHAR NOT NULL,
     item_code VARCHAR NOT NULL,
+    company_id VARCHAR NOT NULL,
     item_status VARCHAR NOT NULL,
     item_price VARCHAR NOT NULL,
     del_flag VARCHAR NOT NULL,
@@ -45,7 +46,7 @@ CREATE TABLE m_orders (
 );
 select * from m_orders;
 
-CREATE TABLE m_customerReview (
+CREATE TABLE m_customer_review (
     id INT PRIMARY KEY,
     table_number VARCHAR NOT NULL,
     company_id VARCHAR NOT NULL,
@@ -54,7 +55,7 @@ CREATE TABLE m_customerReview (
     message VARCHAR NOT NULL,
     stars VARCHAR NOT NULL
 );
-select * from m_customerReview;
+select * from m_customer_review;
 
 CREATE TABLE m_inventory (
     id INT PRIMARY KEY ,
@@ -120,6 +121,4 @@ CREATE TABLE t_transactionAudit (
 );
 select * from t_transactionAudit;
 
-spring.datasource.url=jdbc:postgresql://localhost:5432/NORAA
-spring.datasource.username=postgres
-spring.datasource.password=admin
+

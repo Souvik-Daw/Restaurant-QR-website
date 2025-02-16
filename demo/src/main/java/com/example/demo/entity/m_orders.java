@@ -16,7 +16,7 @@ public class m_orders {
     @Column(name = "tableNumber")
     String tableNumber;
 
-    @Column(name = "companyID")
+    @Column(name = "companyId")
     String companyID;
 
     @Column(name = "itemsName")

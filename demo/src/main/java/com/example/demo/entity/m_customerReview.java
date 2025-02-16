@@ -16,7 +16,7 @@ public class m_customerReview {
     @Column(name = "tableNumber")
     String tableNumber;
 
-    @Column(name = "companyID")
+    @Column(name = "companyId")
     String companyID;
 
     @Column(name = "delFlag")

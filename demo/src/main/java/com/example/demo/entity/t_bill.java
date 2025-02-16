@@ -16,7 +16,7 @@ public class t_bill {
     @Column(name = "userName")
     String userName;
 
-    @Column(name = "companyID")
+    @Column(name = "companyId")
     String companyID;
 
     @Column(name = "address")

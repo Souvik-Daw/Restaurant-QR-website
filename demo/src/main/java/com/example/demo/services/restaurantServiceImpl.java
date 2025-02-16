@@ -5,7 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.bean.alert;
+import com.example.demo.bean.bill;
+import com.example.demo.bean.coupon;
+import com.example.demo.bean.customerReview;
+import com.example.demo.bean.inventory;
 import com.example.demo.bean.menu;
+import com.example.demo.bean.orders;
+import com.example.demo.bean.restaurant;
 import com.example.demo.dao.restaurantDao;;
 
 @Service("restaurantService")
@@ -46,6 +53,101 @@ public class restaurantServiceImpl implements restaurantService{
 	@Override
 	public List<menu> readMenu(String CompanyId) {
 		return restaurantDao.readMenu(CompanyId);
+	}
+
+	@Override
+	public String createOrder(orders orders) {
+		return restaurantDao.createOrder(orders);
+	}
+
+	@Override
+	public String updateOrder(orders orders) {
+		return restaurantDao.updateOrder(orders);
+	}
+
+	@Override
+	public List<orders> readOrder(orders orders) {
+		return restaurantDao.readOrder(orders);
+	}
+
+	@Override
+	public String updateUserProfile(restaurant restaurant) {
+		return restaurantDao.updateUserProfile(restaurant);
+	}
+
+	@Override
+	public String createCustomerReview(customerReview customerReview) {
+		return restaurantDao.createCustomerReview(customerReview);
+	}
+
+	@Override
+	public String updateCustomerReview(customerReview customerReview) {
+		return restaurantDao.updateCustomerReview(customerReview);
+	}
+
+	@Override
+	public List<customerReview> readCustomerReview(customerReview customerReview) {
+		return restaurantDao.readCustomerReview(customerReview);
+	}
+
+	@Override
+	public String createInventory(inventory inventory) {
+		return restaurantDao.createInventory(inventory);
+	}
+
+	@Override
+	public String updateInventory(inventory inventory) {
+		return restaurantDao.updateInventory(inventory);
+	}
+
+	@Override
+	public List<inventory> readInventory(inventory inventory) {
+		return restaurantDao.readInventory(inventory);
+	}
+
+	@Override
+	public String createBill(bill bill) {
+		return restaurantDao.createBill(bill);
+	}
+
+	@Override
+	public String updateBill(bill bill) {
+		return restaurantDao.updateBill(bill);
+	}
+
+	@Override
+	public List<bill> readBill(bill bill) {
+		return restaurantDao.readBill(bill);
+	}
+
+	@Override
+	public String createCoupon(coupon coupon) {
+		return restaurantDao.createCoupon(coupon);
+	}
+
+	@Override
+	public String updateCoupon(coupon coupon) {
+		return restaurantDao.updateCoupon(coupon);
+	}
+
+	@Override
+	public List<coupon> readCoupon(coupon coupon) {
+		return restaurantDao.readCoupon(coupon);
+	}
+
+	@Override
+	public String createAlert(alert alert) {
+		return restaurantDao.createAlert(alert);
+	}
+
+	@Override
+	public String updateAlert(alert alert) {
+		return restaurantDao.updateAlert(alert);
+	}
+
+	@Override
+	public List<alert> readAlert(alert alert) {
+		return restaurantDao.readAlert(alert);
 	}
 
 }

@@ -19,7 +19,7 @@ public class t_coupon {
     @Column(name = "amount")
     String amount;
 
-    @Column(name = "companyID")
+    @Column(name = "companyId")
     String companyID;
 
     @Column(name = "expDate")
