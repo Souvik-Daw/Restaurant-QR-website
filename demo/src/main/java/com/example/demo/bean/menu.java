@@ -18,6 +18,8 @@ public class menu {
     String delFlag;
 
     String category;
+    
+    String companyId;
 
     String recordInsertDate;
 
@@ -93,6 +95,14 @@ public class menu {
 
 	public void setEffectiveFromDate(String effectiveFromDate) {
 		this.effectiveFromDate = effectiveFromDate;
+	}
+
+	public String getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
 	
 }

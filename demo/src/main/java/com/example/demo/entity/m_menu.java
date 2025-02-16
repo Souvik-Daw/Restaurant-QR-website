@@ -30,6 +30,9 @@ public class m_menu {
 
     @Column(name = "category")
     String category;
+    
+    @Column(name = "companyId")
+    String companyid;
 
     @Column(name = "recordInsertDate")
     String recordInsertDate;
@@ -108,7 +111,13 @@ public class m_menu {
 	public void setEffectiveFromDate(String effectiveFromDate) {
 		this.effectiveFromDate = effectiveFromDate;
 	}
-    
-    
+
+	public String getCompanyid() {
+		return companyid;
+	}
+
+	public void setCompanyid(String companyid) {
+		this.companyid = companyid;
+	}
 
 }
