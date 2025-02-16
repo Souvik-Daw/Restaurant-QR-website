@@ -1,0 +1,125 @@
+CREATE TABLE m_restaurant
+(
+id int PRIMARY KEY NOT NULL,
+user_name varchar NOT null,
+pswd varchar NOT null,
+company_id varchar NOT null,
+email varchar NOT null,
+last_login varchar,
+del_flag varchar NOT null,
+record_insert_date varchar NOT null,
+total_tables varchar NOT null,
+bank_account_number varchar,
+ifsc_code varchar,
+gst_number varchar,
+address varchar NOT null,
+phone_number varchar NOT null
+);
+select * from m_restaurant;
+
+CREATE TABLE m_menu (
+    id INT PRIMARY key NOT NULL,
+    item_name VARCHAR NOT NULL,
+    item_code VARCHAR NOT NULL,
+    item_status VARCHAR NOT NULL,
+    item_price VARCHAR NOT NULL,
+    del_flag VARCHAR NOT NULL,
+    category VARCHAR NOT NULL,
+    record_insert_date VARCHAR NOT NULL,
+    effective_from_date VARCHAR NOT NULL
+);
+select * from m_menu;
+
+CREATE TABLE m_orders (
+    id INT PRIMARY KEY,
+    table_number VARCHAR NOT NULL,
+    company_id VARCHAR NOT NULL,
+    items_name VARCHAR NOT NULL,
+    items_code VARCHAR NOT NULL,
+    items_price VARCHAR NOT NULL,
+    del_flag VARCHAR NOT NULL,
+    payment_status VARCHAR NOT NULL,
+    payment_mode VARCHAR NOT NULL,
+    date_and_time VARCHAR NOT NULL,
+    process_status VARCHAR NOT NULL
+);
+select * from m_orders;
+
+CREATE TABLE m_customerReview (
+    id INT PRIMARY KEY,
+    table_number VARCHAR NOT NULL,
+    company_id VARCHAR NOT NULL,
+    del_flag VARCHAR NOT NULL,
+    date_and_time VARCHAR NOT NULL,
+    message VARCHAR NOT NULL,
+    stars VARCHAR NOT NULL
+);
+select * from m_customerReview;
+
+CREATE TABLE m_inventory (
+    id INT PRIMARY KEY ,
+    item_name VARCHAR NOT NULL,
+    price VARCHAR NOT NULL,
+    quantity VARCHAR NOT NULL,
+    item_code VARCHAR NOT NULL,
+    company_id VARCHAR NOT NULL,
+    del_flag VARCHAR NOT NULL,
+    record_insert_date VARCHAR NOT NULL,
+    record_update_time VARCHAR NOT NULL
+);
+select * from m_inventory;
+
+CREATE TABLE t_alert (
+    id INT PRIMARY KEY,
+    alert_name VARCHAR NOT NULL,
+    description VARCHAR NOT NULL,
+    status VARCHAR NOT NULL,
+    priority VARCHAR NOT NULL,
+    date_and_time VARCHAR NOT NULL,
+    del_flag VARCHAR NOT NULL,
+    company_id VARCHAR NOT NULL
+);
+select * from t_alert;
+
+CREATE TABLE t_coupon (
+    id INT PRIMARY KEY,
+    description VARCHAR NOT NULL,
+    amount VARCHAR NOT NULL,
+    company_id VARCHAR NOT NULL,
+    exp_date VARCHAR NOT NULL,
+    del_flag VARCHAR NOT NULL
+);
+select * from t_coupon;
+
+CREATE TABLE t_bill (
+    id INT PRIMARY KEY,
+    user_name VARCHAR NOT NULL,
+    company_id VARCHAR NOT NULL,
+    address VARCHAR NOT NULL,
+    phone VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    gst_number VARCHAR NOT NULL,
+    payment_mode VARCHAR NOT NULL,
+    items VARCHAR NOT NULL,
+    price VARCHAR NOT NULL,
+    bill_no VARCHAR NOT NULL,
+    persons VARCHAR NOT NULL,
+    date_and_time VARCHAR NOT NULL,
+    del_flag VARCHAR NOT NULL
+);
+select * from t_bill;
+
+CREATE TABLE t_transactionAudit (
+    id INT PRIMARY KEY,
+    operation VARCHAR NOT NULL,
+    date_and_time VARCHAR NOT NULL,
+    company_id VARCHAR NOT NULL,
+    table_impacted VARCHAR NOT NULL,
+    description VARCHAR NOT NULL,
+    del_flag VARCHAR NOT NULL
+);
+select * from t_transactionAudit;
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/NORAA
+spring.datasource.username=postgres
+spring.datasource.password=admin
