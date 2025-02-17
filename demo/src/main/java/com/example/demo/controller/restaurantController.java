@@ -20,6 +20,7 @@ import com.example.demo.bean.coupon;
 import com.example.demo.bean.customerReview;
 import com.example.demo.bean.inventory;
 import com.example.demo.bean.menu;
+import com.example.demo.bean.orderDetails;
 import com.example.demo.bean.orders;
 import com.example.demo.bean.restaurant;
 import com.example.demo.services.noraaAlphaService;
@@ -291,6 +292,37 @@ public class restaurantController {
 		alertList=restaurantService.readAlert(alert);
 		Map map=new HashMap<>();
 		map.put("Message", alertList);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/totalSales",method=RequestMethod.POST)
+	public ResponseEntity<?> totalSales(@RequestBody orderDetails orderDetails)
+	{
+		List<orders> orderList = new ArrayList<>();
+		orderList=restaurantService.totalSales(orderDetails);
+		Map map=new HashMap<>();
+		map.put("Message", orderList);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/aov",method=RequestMethod.POST)
+	public ResponseEntity<?> aov(@RequestBody orderDetails  orderDetails)
+	{
+		String Message=restaurantService.aov(orderDetails);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("Message", Message);
+		map.put("Status", "Success");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/bestLeastSellingDish",method=RequestMethod.POST)
+	public ResponseEntity<?> bestLeastSellingDish(@RequestBody orderDetails  orderDetails)
+	{
+		Map<String,List<String>> Message=restaurantService.bestLeastSellingDish(orderDetails);
+		Map map=new HashMap<>();
+		map.put("Message", Message);
 		map.put("Status", "Success");
 		return new ResponseEntity<>(map, HttpStatus.OK);
 	}

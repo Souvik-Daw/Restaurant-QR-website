@@ -1,8 +1,12 @@
 package com.example.demo.dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,6 +26,7 @@ import com.example.demo.bean.coupon;
 import com.example.demo.bean.customerReview;
 import com.example.demo.bean.inventory;
 import com.example.demo.bean.menu;
+import com.example.demo.bean.orderDetails;
 import com.example.demo.bean.orders;
 import com.example.demo.bean.restaurant;
 import com.example.demo.bean.userProfileBean;
@@ -1397,6 +1402,174 @@ public class restaurantDaoImpl implements restaurantDao {
 		}
 		logger.info("end of readAlert function");
 		return responseList;
+	}
+
+	@Override
+	public List<orders> totalSales(orderDetails orderDetails) {
+		logger.info("start of totalSales function");
+		Session session=this.sessionFactory.openSession();
+		List<?> list=null;
+		session.beginTransaction();
+		List<orders> responseList=new ArrayList<>();
+		StringBuilder queryStr=new StringBuilder(0);
+		try {
+			queryStr.append("select * from m_orders where del_flag = 'N' and company_id=:company_id and date_and_time > :fromDate and date_and_time < :toDate");
+			Query<?> query=session.createSQLQuery(queryStr.toString()).setParameter("company_id",orderDetails.getCompanyId())
+																	  .setParameter("fromDate",orderDetails.getFromDateAndTime())
+																	  .setParameter("toDate",orderDetails.getToDateAndTime());
+			list =  query.getResultList();
+			if(list!=null && list.size()>0)
+			{
+				for(Iterator it=list.iterator();it.hasNext();)
+				{
+					Object[] obj=(Object[])it.next();
+					orders testBean=new orders();
+					if(obj[0]!=null)
+						testBean.setId(Integer.parseInt(obj[0]+""));
+					if(obj[1]!=null)
+						testBean.setTableNumber(obj[1]+"");
+					if(obj[2]!=null)
+						testBean.setCompanyID(obj[2]+"");
+					if(obj[3]!=null)
+						testBean.setItemsName(obj[3]+"");
+					if(obj[4]!=null)
+						testBean.setItemsCode(obj[4]+"");
+					if(obj[5]!=null)
+						testBean.setItemsPrice(obj[5]+"");
+					if(obj[6]!=null)
+						testBean.setDelFlag(obj[6]+"");
+					if(obj[7]!=null)
+						testBean.setPaymentStatus(obj[7]+"");
+					if(obj[8]!=null)
+						testBean.setPaymentMode(obj[8]+"");
+					if(obj[9]!=null)
+						testBean.setDateAndTime(obj[9]+"");
+					if(obj[10]!=null)
+						testBean.setProcessStatus(obj[10]+"");
+					responseList.add(testBean);
+				}
+			}
+			else
+			{
+				return null;
+			}
+			session.getTransaction().commit();
+		    session.close();
+		}
+		catch(Exception e){
+			logger.error("exception at totalSales function "+e);
+			session.close();
+		}
+		logger.info("end of totalSales function");
+		return responseList;
+	}
+
+	@Override
+	public String aov(orderDetails orderDetails) {
+		logger.info("start of aov function");
+		Session session=this.sessionFactory.openSession();
+		List<?> list=null;
+		int aov=0;
+		session.beginTransaction();
+		StringBuilder queryStr=new StringBuilder(0);
+		try
+		{	
+			queryStr.append("select items_price from m_orders where del_flag = 'N' and company_id=:company_id and date_and_time > :fromDate and date_and_time < :toDate");
+			Query<?> query=session.createSQLQuery(queryStr.toString()).setParameter("company_id",orderDetails.getCompanyId())
+																	  .setParameter("fromDate",orderDetails.getFromDateAndTime())
+																	  .setParameter("toDate",orderDetails.getToDateAndTime());
+			list =  query.getResultList();
+			if(list!=null && list.size()>0)
+			{
+				for (int i=0;i<list.size();i++)
+					aov+= Integer.parseInt((String) list.get(i));
+				
+				aov/=list.size();
+			}
+			session.getTransaction().commit();
+		    session.close();
+		}
+		catch(Exception e)
+		{
+			logger.info("Exception at aov function "+e);
+			session.close();
+		}
+		logger.info("end of aov function");
+		return aov+"";
+	}
+
+	@Override
+	public Map<String, List<String>> bestLeastSellingDish(orderDetails orderDetails) {
+		logger.info("start of bestLeastSellingDish function");
+		Session session=this.sessionFactory.openSession();
+		List<?> list=null;
+		int aov=0;
+		session.beginTransaction();
+		StringBuilder queryStr=new StringBuilder(0);
+		Map<String, Integer> countMap = new HashMap<>();
+		Map<String, List<String>> bestLeastSellingDish = new HashMap<>();
+		try
+		{	
+			queryStr.append("select * from m_orders where del_flag = 'N' and company_id=:company_id and date_and_time > :fromDate and date_and_time < :toDate");
+			Query<?> query=session.createSQLQuery(queryStr.toString()).setParameter("company_id",orderDetails.getCompanyId())
+																	  .setParameter("fromDate",orderDetails.getFromDateAndTime())
+																	  .setParameter("toDate",orderDetails.getToDateAndTime());
+			list =  query.getResultList();
+			if(list!=null && list.size()>0)
+			{
+				for(Iterator it=list.iterator();it.hasNext();)
+				{
+					Object[] obj=(Object[])it.next();
+					String items = obj[3]+"";
+					
+					List<String> item = Arrays.asList(items.split(","));
+					for (String eachItem : item) {
+			            countMap.put(eachItem, countMap.getOrDefault(eachItem, 0) + 1);
+			        }
+					
+				}
+			}
+			session.getTransaction().commit();
+		    session.close();
+		    
+		    int maxValue=Integer.MIN_VALUE;
+			int minValue=Integer.MAX_VALUE;
+			
+			for (Map.Entry<String,Integer> entry : countMap.entrySet()) 
+			{
+				if(entry.getValue()>maxValue)
+					maxValue=entry.getValue();
+				
+				if(entry.getValue()<minValue)
+					minValue=entry.getValue();
+			}
+	        List<String> bestSelling = new ArrayList<>();
+	        List<String> leastSelling = new ArrayList<>();
+	        
+	        for (Map.Entry<String,Integer> entry : countMap.entrySet()) 
+			{
+				if(entry.getValue()==maxValue)
+				{
+					bestSelling.add(entry.getKey());
+				}
+				
+				if(entry.getValue()==minValue)
+				{
+					leastSelling.add(entry.getKey());
+				}
+			}
+			
+	        bestLeastSellingDish.put("Best selling with "+maxValue+" order's", bestSelling);
+	        bestLeastSellingDish.put("Least selling with "+minValue+" order's", leastSelling);
+		}
+		catch(Exception e)
+		{
+			logger.info("Exception at bestLeastSellingDish function "+e);
+			session.close();
+		}
+		logger.info("end of bestLeastSellingDish function");
+		
+		return bestLeastSellingDish;
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import com.example.demo.bean.coupon;
 import com.example.demo.bean.customerReview;
 import com.example.demo.bean.inventory;
 import com.example.demo.bean.menu;
+import com.example.demo.bean.orderDetails;
 import com.example.demo.bean.orders;
 import com.example.demo.bean.restaurant;
 import com.example.demo.dao.restaurantDao;;
@@ -148,6 +150,21 @@ public class restaurantServiceImpl implements restaurantService{
 	@Override
 	public List<alert> readAlert(alert alert) {
 		return restaurantDao.readAlert(alert);
+	}
+
+	@Override
+	public List<orders> totalSales(orderDetails orderDetails) {
+		return restaurantDao.totalSales(orderDetails);
+	}
+
+	@Override
+	public String aov(orderDetails orderDetails) {
+		return restaurantDao.aov(orderDetails);
+	}
+
+	@Override
+	public Map<String, List<String>> bestLeastSellingDish(orderDetails orderDetails) {
+		return restaurantDao.bestLeastSellingDish(orderDetails);
 	}
 
 }
