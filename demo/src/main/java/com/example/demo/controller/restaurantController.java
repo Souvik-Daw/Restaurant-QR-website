@@ -33,7 +33,7 @@ public class restaurantController {
 	@Autowired
 	restaurantService restaurantService;
 	
-	@RequestMapping(value="/test",method=RequestMethod.GET)
+	@RequestMapping(value="/admin/test",method=RequestMethod.GET)
 	public ResponseEntity<?> test()
 	{
 		String Message=restaurantService.test();
