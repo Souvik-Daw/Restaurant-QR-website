@@ -16,6 +16,18 @@ address varchar NOT null,
 phone_number varchar NOT null
 );
 select * from m_restaurant;
+INSERT INTO public.m_restaurant
+(id, user_name, pswd, company_id, email, last_login, del_flag, record_insert_date, total_tables, bank_account_number, ifsc_code, gst_number, address, phone_number)
+VALUES(1, 'JohnDoe', 'password123', '1', 'john.doe@example.com', NULL, 'N', '2025-02-09 20:13:28.151', '10', NULL, '', 'GSTIN12345XYZ', '123, Sample Street, City, Country', '1234567890');
+INSERT INTO public.m_restaurant
+(id, user_name, pswd, company_id, email, last_login, del_flag, record_insert_date, total_tables, bank_account_number, ifsc_code, gst_number, address, phone_number)
+VALUES(2, 'fergusdaw', '123456', '2', 'fergusdaw2000@gmail.com', NULL, 'N', '2025-02-09 20:15:36.641', '15', '9876543210', 'ABC123456', 'GSTIN12345XYZ', 'Kolkata,700089', '8584856524');
+INSERT INTO public.m_restaurant
+(id, user_name, pswd, company_id, email, last_login, del_flag, record_insert_date, total_tables, bank_account_number, ifsc_code, gst_number, address, phone_number)
+VALUES(3, 'Adarsh', '69', '3', 'adarsh@example.com', NULL, 'N', '2025-02-15 21:39:36.020', '10', '123456789012', 'HDFC0001234', 'GSTIN12345XYZ', '123, Sample Street, City, Country', '1234567890');
+INSERT INTO public.m_restaurant
+(id, user_name, pswd, company_id, email, last_login, del_flag, record_insert_date, total_tables, bank_account_number, ifsc_code, gst_number, address, phone_number)
+VALUES(4, 'Adarsh', '699', '3', 'adarsh9@example.com', NULL, 'N', '2025-03-07 11:31:50.241', '10', NULL, 'ABC123456', 'GSTIN12345XYZ', '123, Sample Street, City, Country', '1234567890');
 
 CREATE TABLE m_menu (
     id INT PRIMARY key NOT NULL,
@@ -30,6 +42,12 @@ CREATE TABLE m_menu (
     effective_from_date VARCHAR NOT NULL
 );
 select * from m_menu;
+INSERT INTO public.m_menu
+(id, item_name, item_code, company_id, item_status, item_price, del_flag, category, record_insert_date, effective_from_date)
+VALUES(1, 'Butter Chicken', '1-0001', '1', 'Y', '349', 'N', 'Sides', '2025-02-16 ', '16-02-2025');
+INSERT INTO public.m_menu
+(id, item_name, item_code, company_id, item_status, item_price, del_flag, category, record_insert_date, effective_from_date)
+VALUES(2, 'Rice', '1-0002', '1', 'Y', '149', 'N', 'Rice', '2025-02-16 ', '16-02-2025');
 
 CREATE TABLE m_orders (
     id INT PRIMARY KEY,
@@ -45,6 +63,30 @@ CREATE TABLE m_orders (
     process_status VARCHAR NOT NULL
 );
 select * from m_orders;
+INSERT INTO public.m_orders
+(id, table_number, company_id, items_name, items_code, items_price, del_flag, payment_status, payment_mode, date_and_time, process_status)
+VALUES(4, '2', '2', 'Chicken biryani', '1-0001', '399', 'Y', 'Paid', 'Offline', '10-02-2025 21:35:56', 'Completed');
+INSERT INTO public.m_orders
+(id, table_number, company_id, items_name, items_code, items_price, del_flag, payment_status, payment_mode, date_and_time, process_status)
+VALUES(5, '12', '3', 'Burger Combo', '3-5444', '250', 'Y', 'Paid', 'Credit Card', '2025-02-16 16:42:42.671', 'Completed');
+INSERT INTO public.m_orders
+(id, table_number, company_id, items_name, items_code, items_price, del_flag, payment_status, payment_mode, date_and_time, process_status)
+VALUES(3, '4', '2', 'Chicken biryani,Butter Paneer', '1-0001,1-0004', '598', 'Y', 'Pending', 'NA', '10-02-2025 21:35:56', 'Ongoing');
+INSERT INTO public.m_orders
+(id, table_number, company_id, items_name, items_code, items_price, del_flag, payment_status, payment_mode, date_and_time, process_status)
+VALUES(1, '4', '1', 'Chicken biryani,Butter Paneer', '1-0001,1-0004', '598', 'N', 'Pending', 'NA', '2025-02-01 16:39:36.020', 'Ongoing');
+INSERT INTO public.m_orders
+(id, table_number, company_id, items_name, items_code, items_price, del_flag, payment_status, payment_mode, date_and_time, process_status)
+VALUES(2, '2', '1', 'Chicken biryani', '1-0001', '399', 'N', 'Paid', 'Offline', '2025-02-05 13:39:36.020', 'Completed');
+INSERT INTO public.m_orders
+(id, table_number, company_id, items_name, items_code, items_price, del_flag, payment_status, payment_mode, date_and_time, process_status)
+VALUES(7, '1', '1', 'Dal', '1-0005', '99', 'N', 'Paid', 'Offline', '2025-02-07 18:39:36.020', 'Completed');
+INSERT INTO public.m_orders
+(id, table_number, company_id, items_name, items_code, items_price, del_flag, payment_status, payment_mode, date_and_time, process_status)
+VALUES(8, '1', '1', 'Rice,Dal', '1-0005,1-0007', '299', 'N', 'Paid', 'Offline', '2025-02-10 21:39:36.020', 'Completed');
+INSERT INTO public.m_orders
+(id, table_number, company_id, items_name, items_code, items_price, del_flag, payment_status, payment_mode, date_and_time, process_status)
+VALUES(9, '1', '1', 'Chicken biryani,Butter Chicken', '1-0005,1-0006', '799', 'N', 'Paid', 'Offline', '2025-02-15 14:39:36.020', 'Completed');
 
 CREATE TABLE m_customer_review (
     id INT PRIMARY KEY,
@@ -56,6 +98,12 @@ CREATE TABLE m_customer_review (
     stars VARCHAR NOT NULL
 );
 select * from m_customer_review;
+INSERT INTO public.m_customer_review
+(id, table_number, company_id, del_flag, date_and_time, message, stars)
+VALUES(1, '12', '1', 'N', '2025-02-16 17:57:54.407', 'sdsdsdsd ', '5');
+INSERT INTO public.m_customer_review
+(id, table_number, company_id, del_flag, date_and_time, message, stars)
+VALUES(2, '21', '3', 'N', '2025-02-16 17:57:54.407', 'Excellent ambiance and quick service!', '5');
 
 CREATE TABLE m_inventory (
     id INT PRIMARY KEY ,
@@ -69,6 +117,15 @@ CREATE TABLE m_inventory (
     record_update_time VARCHAR NOT NULL
 );
 select * from m_inventory;
+INSERT INTO public.m_inventory
+(id, item_name, price, quantity, item_code, company_id, del_flag, record_insert_date, record_update_time)
+VALUES(1, 'Rice', '90', '10 KG', '1-0007', '1', 'N', '10-02-2025 21:26:23', '10-02-2025 21:26:23');
+INSERT INTO public.m_inventory
+(id, item_name, price, quantity, item_code, company_id, del_flag, record_insert_date, record_update_time)
+VALUES(3, 'Cheese Burger', '150', '50', 'CBG123', '2', 'N', '2025-02-16 18:42:28.635', '2025-02-16 18:42:28.635');
+INSERT INTO public.m_inventory
+(id, item_name, price, quantity, item_code, company_id, del_flag, record_insert_date, record_update_time)
+VALUES(2, 'Dal', '102', '7 KG', '1-0008', '1', 'Y', '10-02-2025 21:26:23', '2025-02-16 18:43:17.939');
 
 CREATE TABLE t_alert (
     id INT PRIMARY KEY,
@@ -81,6 +138,18 @@ CREATE TABLE t_alert (
     company_id VARCHAR NOT NULL
 );
 select * from t_alert;
+INSERT INTO public.t_alert
+(id, alert_name, description, status, priority, date_and_time, del_flag, company_id)
+VALUES(2, 'Order', 'Payment pending at table 4', 'Pending', 'High', '10-02-2025 21:26:23', 'N', '1');
+INSERT INTO public.t_alert
+(id, alert_name, description, status, priority, date_and_time, del_flag, company_id)
+VALUES(3, 'Menu', 'Dal scheduled for tomorrow', 'Pending', 'Low', '10-02-2025 21:26:23', 'N', '1');
+INSERT INTO public.t_alert
+(id, alert_name, description, status, priority, date_and_time, del_flag, company_id)
+VALUES(1, 'Inventory', 'Rice is less than 5 KG', 'Pending', 'Medium', '10-02-2025 21:26:23', 'N', '1');
+INSERT INTO public.t_alert
+(id, alert_name, description, status, priority, date_and_time, del_flag, company_id)
+VALUES(4, 'System Update', 'Scheduled maintenance at midnight', 'Completed', 'High', '2025-02-16 21:51:31.359', 'Y', '2');
 
 CREATE TABLE t_coupon (
     id INT PRIMARY KEY,
@@ -91,6 +160,12 @@ CREATE TABLE t_coupon (
     del_flag VARCHAR NOT NULL
 );
 select * from t_coupon;
+INSERT INTO public.t_coupon
+(id, description, amount, company_id, exp_date, del_flag)
+VALUES(145263, 'Discount', '100', '1', '10-02-2026', 'N');
+INSERT INTO public.t_coupon
+(id, description, amount, company_id, exp_date, del_flag)
+VALUES(101, '10% off on all orders', '10', '2', '2025-12-31', 'Y');
 
 CREATE TABLE t_bill (
     id INT PRIMARY KEY,
@@ -109,6 +184,15 @@ CREATE TABLE t_bill (
     del_flag VARCHAR NOT NULL
 );
 select * from t_bill;
+INSERT INTO public.t_bill
+(id, user_name, company_id, address, phone, email, gst_number, payment_mode, items, price, bill_no, persons, date_and_time, del_flag)
+VALUES(1, 'Ramesh', '1', 'Kolkata,700089', '8548956548', 'abcd@gmail.com', 'S0012547', 'Offline', 'Butter Paneer,Chicken biryani', '598', '145226', '2', '10-02-2025 21:26:23', 'N');
+INSERT INTO public.t_bill
+(id, user_name, company_id, address, phone, email, gst_number, payment_mode, items, price, bill_no, persons, date_and_time, del_flag)
+VALUES(2, 'Suresh', '1', 'Kolkata,700489', '1458752365', 'xyz@gmail.com', 'S0012547', 'GPAY', 'Chicken biryani', '399', '145227', '1', '10-02-2025 21:26:23', 'N');
+INSERT INTO public.t_bill
+(id, user_name, company_id, address, phone, email, gst_number, payment_mode, items, price, bill_no, persons, date_and_time, del_flag)
+VALUES(3, 'John Doe', '2', '123 Main Street, Cityville', '+91 9876543210', 'johndoe@example.com', 'GST123456XYZ', 'Credit Card', 'Pizza, Pasta, Coke', '850', 'BILL20250216', '3', '2025-02-16 20:17:49.331', 'Y');
 
 CREATE TABLE t_transactionAudit (
     id INT PRIMARY KEY,
